@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open Your Letter</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #fcd5ce, #d8e2dc);
+      color: #6d6875;
+      font-family: 'Press Start 2P', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .letter-container {
+      max-width: 600px;
+      padding: 20px;
+      border: 4px dotted #ffafcc;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 20px #cdb4db;
+      animation: pulse 2s infinite;
+      display: none;
+      z-index: 1;
+    }
+
+    h1 {
+      color: #b185db;
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #6d6875;
+    }
+
+    .signature {
+      margin-top: 30px;
+      text-align: right;
+      font-size: 14px;
+      color: #ff6f91;
+      padding-right: 40px;
+    }
+
+    .heart {
+      color: #ff6f91;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    .open-btn {
+      padding: 12px 24px;
+      background-color: #ffc8dd;
+      border: none;
+      color: #5e548e;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: 'Press Start 2P', cursive;
+      box-shadow: 2px 2px 6px #b5838d;
+      transition: background-color 0.3s ease;
+      z-index: 2;
+    }
+
+    .open-btn:hover {
+      background-color: #ffafcc;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 5px #cdb4db; }
+      50% { box-shadow: 0 0 15px #ffafcc; }
+      100% { box-shadow: 0 0 5px #cdb4db; }
+    }
+
+    @keyframes floatEmojis {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 24px;
+      animation: floatEmojis 6s linear infinite;
+    }
+  </style>
+</head>
+<body>
+  <button class="open-btn" onclick="openLetter()">Open Your Letter 💌</button>
+
+  <div class="letter-container" id="letter">
+    <h1>HAPPY BIRTHDAY MILES!! 🎂</h1>
+    <p>My bebe,<br><br>
+    I hope you have an amazing 25th birthday. I’m sorry I can’t be there to celebrate it with you. 💖<br><br>
+    I’m so glad you’re in my life and thankful that I got to meet an amazing person like you.<br>
+    I love you more than words can ever pixelate. Haha get it? LOL<br><br>
+    I can’t wait for you to come back so we can be together.<br>
+    Until then, I will be calling you everyday.</p>
+    <div class="signature">
+      Love,<br>
+      Soobin &lt;3
+    </div>
+    <div class="heart">❤️❤️❤️</div>
+  </div>
+
+  <script>
+    function openLetter() {
+      document.querySelector('.open-btn').style.display = 'none';
+      document.getElementById('letter').style.display = 'block';
+    }
+
+    // Generate floating emojis
+    const emojis = ['💖','🎂','💕','💌','🎉','🐰','✨'];
+    for (let i = 0; i < 30; i++) {
+      const span = document.createElement('span');
+      span.className = 'emoji';
+      span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      span.style.left = Math.random() * 100 + 'vw';
+      span.style.top = 100 + Math.random() * 20 + 'vh';
+      span.style.animationDelay = Math.random() * 5 + 's';
+      span.style.fontSize = (20 + Math.random() * 20) + 'px';
+      document.body.appendChild(span);
+    }
+  </script>
+</body>
+</html>
